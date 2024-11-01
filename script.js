@@ -35,7 +35,9 @@ let timerInterval;
         }
         function resumeTimer() {
             isPaused = false;
-            audio.play();
+            audio.play().catch(error => {
+                console.log("Error playing audio:", error);
+            });
         }
         function resetTimer() {
             clearInterval(timerInterval);
