@@ -22,7 +22,9 @@ let timerInterval;
                     if (!isPaused && remainingTime > 0) {
                         remainingTime--;
                         updateTimer();
-                        audio.play();
+                        audio.play().catch(error => {
+                            console.log("Error playing audio:", error);
+                        });
                     }
                 }, 1000);
             }
