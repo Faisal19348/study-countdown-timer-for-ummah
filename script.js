@@ -15,8 +15,7 @@ let timerInterval;
 
             if (remainingTime === 0) {
                 clearInterval(timerInterval);
-                postMessageToSoundCloud("pause");
-                print("Times up,very good,Go for a breake");    
+                postMessageToSoundCloud("pause");   
             }
         }
 
