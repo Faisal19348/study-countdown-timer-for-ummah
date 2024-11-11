@@ -47,7 +47,6 @@ let timerInterval;
             remainingTime = 2 * 60 * 60;
             updateTimer();
             postMessageToSoundCloud("pasue");
-            postMessageToSoundCloud("<button class="skipControl sc-ir playControls__control playControls__prev skipControl__previous">Skip to previous</button>");
         }
 
         // Function to send play/pause message to SoundCloud iframe
