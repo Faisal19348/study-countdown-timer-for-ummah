@@ -46,7 +46,7 @@ let timerInterval;
             timerInterval = null;
             remainingTime = 2 * 60 * 60;
             updateTimer();
-            postMessageToSoundCloud("play current");
+            postMessageToSoundCloud("null");
         }
 
         // Function to send play/pause message to SoundCloud iframe
