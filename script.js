@@ -20,7 +20,7 @@ const widget = SC.Widget(iframeElement);
 
             if (remainingTime === 0) {
                 clearInterval(timerInterval);
-                postMessageToSoundCloud("pause");   
+                widget.pause();    
             }
         }
 
@@ -30,7 +30,7 @@ const widget = SC.Widget(iframeElement);
                     if (!isPaused && remainingTime > 0) {
                         remainingTime--;
                         updateTimer();
-                        postMessageToSoundCloud("play");
+                        widget.play(); 
                     }
                 }, 1000);
             }
@@ -38,12 +38,12 @@ const widget = SC.Widget(iframeElement);
 
         function pauseTimer() {
             isPaused = true;
-            postMessageToSoundCloud("pause");
+            widget.pause(); 
         }
 
         function resumeTimer() {
             isPaused = false;
-            postMessageToSoundCloud("play");
+            widget.play(); 
         }
 
 function resetTimer() {
