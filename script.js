@@ -1,68 +1,61 @@
 let timerInterval;
-        let remainingTime = 2 * 60 * 60; // 2 hours in seconds
-        let isPaused = false;
+let remainingTime = 2 * 60 * 60; // 2 hours in seconds
+let isPaused = false;
 
-        const timerElement = document.getElementById("timer");
-        const soundcloudPlayer = document.getElementById("soundcloudPlayer");
-        
+const timerElement = document.getElementById("timer");
+const iframeElement = document.getElementById("soundcloud-widget");
+const widget = SC.Widget(iframeElement); // Initialize SoundCloud widget
 
-       // Initialize the SoundCloud widget
-const iframeElement = document.getElementById('soundcloud-widget'); // Replace with your iframe's ID
-const widget = SC.Widget(iframeElement);
+// Function to format and update the timer display
+function updateTimer() {
+    const hours = Math.floor(remainingTime / 3600);
+    const minutes = Math.floor((remainingTime % 3600) / 60);
+    const seconds = remainingTime % 60;
 
-        function updateTimer() {
-            const hours = Math.floor(remainingTime / 3600);
-            const minutes = Math.floor((remainingTime % 3600) / 60);
-            const seconds = remainingTime % 60;
+    timerElement.textContent = 
+        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-            timerElement.textContent = 
-                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    if (remainingTime === 0) {
+        clearInterval(timerInterval);
+        widget.pause(); // Stop music when the timer ends
+    }
+}
 
-            if (remainingTime === 0) {
-                clearInterval(timerInterval);
-                widget.pause();    
+// Function to start the timer
+function startTimer() {
+    if (!timerInterval) {
+        timerInterval = setInterval(() => {
+            if (!isPaused && remainingTime > 0) {
+                remainingTime--;
+                updateTimer();
+                widget.play(); // Play music during the countdown
             }
-        }
+        }, 1000);
+    }
+}
 
-        function startTimer() {
-            if (!timerInterval) {
-                timerInterval = setInterval(() => {
-                    if (!isPaused && remainingTime > 0) {
-                        remainingTime--;
-                        updateTimer();
-                        widget.play(); 
-                    }
-                }, 1000);
-            }
-        }
+// Function to pause the timer
+function pauseTimer() {
+    isPaused = true;
+    widget.pause(); // Pause music
+}
 
-        function pauseTimer() {
-            isPaused = true;
-            widget.pause(); 
-        }
+// Function to resume the timer
+function resumeTimer() {
+    isPaused = false;
+    widget.play(); // Resume music
+}
 
-        function resumeTimer() {
-            isPaused = false;
-            widget.play(); 
-        }
-
+// Function to reset the timer and SoundCloud track
 function resetTimer() {
     clearInterval(timerInterval);
     timerInterval = null;
-    remainingTime = 2 * 60 * 60; // Reset timer to 2 hours
+    remainingTime = 2 * 60 * 60; // Reset to 2 hours
     updateTimer();
 
-    // Reset SoundCloud track to the beginning
-    widget.seekTo(0); // Seek to the 0-point
+    widget.seekTo(0); // Reset music to the beginning
     widget.pause();   // Pause playback
 }
 
-
-        // Function to send play/pause message to SoundCloud iframe
-        function postMessageToSoundCloud(action) {
-            soundcloudPlayer.contentWindow.postMessage(JSON.stringify({
-                method: action
-            }), "*");
-        }
-
-        updateTimer(); // Initialize timer display
+// Initialize the timer display
+updateTimer();
