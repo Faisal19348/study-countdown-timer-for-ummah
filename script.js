@@ -46,7 +46,7 @@ let timerInterval;
             timerInterval = null;
             remainingTime = 2 * 60 * 60;
             updateTimer();
-            postMessageToSoundCloud("refresh");
+            postMessageToSoundCloud("seekTo",0);
             postMessageToSoundCloud("pause");
         }
 
