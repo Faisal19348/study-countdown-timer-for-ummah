@@ -4,6 +4,11 @@ let timerInterval;
 
         const timerElement = document.getElementById("timer");
         const soundcloudPlayer = document.getElementById("soundcloudPlayer");
+        
+
+       // Initialize the SoundCloud widget
+const iframeElement = document.getElementById('soundcloud-widget'); // Replace with your iframe's ID
+const widget = SC.Widget(iframeElement);
 
         function updateTimer() {
             const hours = Math.floor(remainingTime / 3600);
@@ -41,14 +46,17 @@ let timerInterval;
             postMessageToSoundCloud("play");
         }
 
-        function resetTimer() {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            remainingTime = 2 * 60 * 60;
-            updateTimer();
-            postMessageToSoundCloud("seekTo",0);
-            postMessageToSoundCloud("pause");
-        }
+function resetTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    remainingTime = 2 * 60 * 60; // Reset timer to 2 hours
+    updateTimer();
+
+    // Reset SoundCloud track to the beginning
+    widget.seekTo(0); // Seek to the 0-point
+    widget.pause();   // Pause playback
+}
+
 
         // Function to send play/pause message to SoundCloud iframe
         function postMessageToSoundCloud(action) {
