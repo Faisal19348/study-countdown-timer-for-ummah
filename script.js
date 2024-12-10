@@ -17,7 +17,8 @@ function updateTimer() {
 
     if (remainingTime === 0) {
         clearInterval(timerInterval);
-        widget.pause(); // Stop music when the timer ends
+        widget.pause();// Stop music when the timer ends
+        widget.seekTo(0);
     }
 }
 
