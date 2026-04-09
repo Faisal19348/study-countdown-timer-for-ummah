@@ -66,4 +66,31 @@ function resetTimer() {
     audioPlayer.currentTime = 0;
     timerElement.textContent = fmt(remainingTime);
     setMusicStatus('stopped');
+    hideOverlay();
 }
+
+function showOverlay() {
+    document.getElementById('focusOverlay').style.display = 'flex';
+}
+
+function hideOverlay() {
+    document.getElementById('focusOverlay').style.display = 'none';
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        if (timerInterval && !isPaused) {
+            isPaused = true;
+            audioPlayer.pause();
+            setMusicStatus('stopped');
+            showOverlay();
+        }
+    } else {
+        if (timerInterval && isPaused) {
+            isPaused = false;
+            audioPlayer.play().catch(err => console.log("Audio error:", err));
+            setMusicStatus('playing');
+            hideOverlay();
+        }
+    }
+});
