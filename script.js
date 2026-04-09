@@ -25,11 +25,11 @@ function updateTimer() {
 // Function to start the timer
 function startTimer() {
     if (!timerInterval) {
+        widget.play();
         timerInterval = setInterval(() => {
             if (!isPaused && remainingTime > 0) {
                 remainingTime--;
                 updateTimer();
-                widget.play(); // Play music during the countdown
             }
         }, 1000);
     }
