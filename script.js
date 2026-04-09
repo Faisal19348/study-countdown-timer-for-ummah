@@ -17,6 +17,7 @@ function updateTimer() {
 
     if (remainingTime === 0) {
         clearInterval(timerInterval);
+        timerInterval = null;
         audioPlayer.pause();
         audioPlayer.currentTime = 0;
         isPlaying = false;
@@ -26,7 +27,10 @@ function updateTimer() {
 // Function to start the timer
 function startTimer() {
     if (!timerInterval) {
-        audioPlayer.play();
+        console.log("Starting timer and audio...");
+        audioPlayer.play().catch(function(error) {
+            console.log("Audio play error:", error);
+        });
         isPlaying = true;
         timerInterval = setInterval(() => {
             if (!isPaused && remainingTime > 0) {
@@ -50,7 +54,9 @@ function resumeTimer() {
     if (timerInterval && isPaused) {
         isPaused = false;
         if (isPlaying) {
-            audioPlayer.play();
+            audioPlayer.play().catch(function(error) {
+                console.log("Audio play error:", error);
+            });
         }
     }
 }
