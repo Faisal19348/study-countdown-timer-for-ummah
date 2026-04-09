@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h1>Study Countdown Timer</h1>
 
     <div id="timer" class="timer-display">02:00:00</div>
@@ -26,6 +27,15 @@
     <audio id="audioPlayer" loop>
         <source src="https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/2.mp3" type="audio/mpeg">
     </audio>
+
+    <div id="focusOverlay">
+        <div id="overlayBox">
+            <div id="overlayIcon">⏸</div>
+            <h2>Timer Paused</h2>
+            <p>You left the study tab.<br>Come back to resume your session.</p>
+            <button onclick="hideOverlay(); resumeTimer();">Resume Studying</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
