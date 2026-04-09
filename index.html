@@ -8,21 +8,25 @@
 </head>
 <body>
     <h1>Study Countdown Timer</h1>
-    
+
     <div id="timer" class="timer-display">02:00:00</div>
-    
+
     <div class="button-container">
         <button onclick="startTimer()">Start</button>
         <button onclick="pauseTimer()">Pause</button>
         <button onclick="resumeTimer()">Resume</button>
         <button onclick="resetTimer()">Reset</button>
     </div>
-    
-    <!-- Audio element for playing Quran -->
-   <audio>
-    <source src="https://soundcloud.com/md-arf/2-hours-heart-touching-quran?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=56262b551e694890876483e4f842ed43" type="audio/mpeg">
-</audio>
-    
+
+    <div class="music-bar">
+        <span class="music-name">Surah Al-Baqarah — Mishary Al-Afasy</span>
+        <span id="musicStatus" class="music-status">Stopped</span>
+    </div>
+
+    <audio id="audioPlayer" loop>
+        <source src="https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/2.mp3" type="audio/mpeg">
+    </audio>
+
     <script src="script.js"></script>
 </body>
 </html>
