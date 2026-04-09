@@ -3,28 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer with Audio Control</title>
+    <title>Study Countdown Timer for Ummah</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://w.soundcloud.com/player/api.js"></script>
 </head>
 <body>
-    <div id="timer">02:00:00</div>
+    <h1>Study Countdown Timer</h1>
+    
+    <div id="timer" class="timer-display">02:00:00</div>
+    
     <div class="button-container">
         <button onclick="startTimer()">Start</button>
         <button onclick="pauseTimer()">Pause</button>
-        <button onclick="resumeTimer()">Resume</button>
         <button onclick="resetTimer()">Reset</button>
     </div>
-    <div class="soundcloud-widget">
-        <iframe id="soundcloud-widget"
-    width="100%"
-    height="100%"
-    scrolling="no"
-    frameborder="no"
-    allow="autoplay"
-           src="https://soundcloud.com/md-arf/2-hours-heart-touching-quran?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing&si=68a568ae2de74197a0063cd314b68f25">
-        </iframe>
-    </div>
+    
+    <!-- Audio element for playing Quran -->
+    <audio id="audioPlayer">
+        <source src="quran-audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
     <script src="script.js"></script>
 </body>
 </html>
