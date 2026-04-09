@@ -4,8 +4,7 @@ let isPaused = false;
 let isPlaying = false;
 
 const timerElement = document.getElementById("timer");
-const iframeElement = document.getElementById("soundcloud-widget");
-const widget = SC.Widget(iframeElement); // Initialize SoundCloud widget
+const audioPlayer = document.getElementById("audioPlayer");
 
 // Function to format and update the timer display
 function updateTimer() {
@@ -18,8 +17,8 @@ function updateTimer() {
 
     if (remainingTime === 0) {
         clearInterval(timerInterval);
-        widget.pause();// Stop music when the timer ends
-        widget.seekTo(0);
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
         isPlaying = false;
     }
 }
@@ -27,7 +26,7 @@ function updateTimer() {
 // Function to start the timer
 function startTimer() {
     if (!timerInterval) {
-        widget.play();
+        audioPlayer.play();
         isPlaying = true;
         timerInterval = setInterval(() => {
             if (!isPaused && remainingTime > 0) {
@@ -38,32 +37,34 @@ function startTimer() {
     }
 }
 
-// Function to pause the timer
+// Function to pause the timer and audio
 function pauseTimer() {
     isPaused = true;
     if (isPlaying) {
-        widget.pause(); // Pause music
+        audioPlayer.pause();
     }
 }
 
-// Function to resume the timer
+// Function to resume the timer and audio
 function resumeTimer() {
-    isPaused = false;
-    if (isPlaying) {
-        widget.play(); // Resume music
+    if (timerInterval && isPaused) {
+        isPaused = false;
+        if (isPlaying) {
+            audioPlayer.play();
+        }
     }
 }
 
-// Function to reset the timer and SoundCloud track
+// Function to reset the timer and audio
 function resetTimer() {
     clearInterval(timerInterval);
     timerInterval = null;
+    isPaused = false;
     isPlaying = false;
     remainingTime = 2 * 60 * 60; // Reset to 2 hours
+    audioPlayer.currentTime = 0;
+    audioPlayer.pause();
     updateTimer();
-
-    widget.seekTo(0); // Reset music to the beginning
-    widget.pause();   // Pause playback
 }
 
 // Initialize the timer display
