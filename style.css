@@ -1,29 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #121212;
     color: #ffffff;
     font-family: Arial, sans-serif;
     flex-direction: column;
-    gap: 16px;
-    margin: 0;
+    gap: 20px;
+    padding: 2rem;
 }
 
 h1 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 400;
-    color: #888;
-    letter-spacing: 0.1em;
-    margin: 0;
+    color: #666;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .timer-display {
     font-size: clamp(3rem, 15vw, 8rem);
     font-family: monospace;
     letter-spacing: 0.04em;
-    margin: 0;
+    color: #f0f0f0;
 }
 
 .button-container {
@@ -61,7 +67,6 @@ button:active {
     border: 1px solid #2a2a2a;
     border-radius: 12px;
     padding: 10px 18px;
-    margin-top: 8px;
 }
 
 .music-name {
@@ -73,4 +78,56 @@ button:active {
     font-size: 12px;
     color: #888;
     font-style: italic;
+}
+
+#focusOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.93);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#overlayBox {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+#overlayIcon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+#overlayBox h2 {
+    font-size: 1.8em;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+#overlayBox p {
+    color: #888;
+    font-size: 1em;
+    line-height: 1.7;
+}
+
+#overlayBox button {
+    margin-top: 12px;
+    padding: 12px 32px;
+    font-size: 1em;
+    background: #1d3a2a;
+    border: 1px solid #2e7d52;
+    color: #5ec98a;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#overlayBox button:hover {
+    background: #254d38;
 }
