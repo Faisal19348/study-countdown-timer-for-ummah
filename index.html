@@ -11,7 +11,7 @@
     
     <div id="timer" class="timer-display">02:00:00</div>
     
-        <div class="button-container">
+    <div class="button-container">
         <button onclick="startTimer()">Start</button>
         <button onclick="pauseTimer()">Pause</button>
         <button onclick="resumeTimer()">Resume</button>
@@ -19,9 +19,10 @@
     </div>
     
     <!-- Audio element for playing Quran -->
-   <audio id="audioPlayer" crossorigin="anonymous">
-    <source src="https://drive.google.com/uc?export=download&id=1kwpncP1KNKwCv-y90VDCxeCCH9JG2-g_" type="audio/mpeg">
-</audio>
+    <audio id="audioPlayer" preload="auto">
+        <source src="https://server10.zeno.fm/yt4b80xf22ztv" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     
     <script src="script.js"></script>
 </body>
